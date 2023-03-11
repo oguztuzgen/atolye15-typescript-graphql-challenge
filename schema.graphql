@@ -2,11 +2,17 @@
 ### Do not make changes to this file directly
 
 
+type Comment {
+  content: String!
+  postId: Int!
+}
+
 type Mutation {
   post(content: String!): Post!
 }
 
 type Post {
+  comments: [Comment!]!
   content: String!
   id: Int!
   timestamp: Int!

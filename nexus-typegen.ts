@@ -28,6 +28,10 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Comment: { // root type
+    content: string; // String!
+    postId: number; // Int!
+  }
   Mutation: {};
   Post: { // root type
     content: string; // String!
@@ -48,10 +52,15 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Comment: { // field return type
+    content: string; // String!
+    postId: number; // Int!
+  }
   Mutation: { // field return type
     post: NexusGenRootTypes['Post']; // Post!
   }
   Post: { // field return type
+    comments: NexusGenRootTypes['Comment'][]; // [Comment!]!
     content: string; // String!
     id: number; // Int!
     timestamp: number; // Int!
@@ -62,10 +71,15 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Comment: { // field return type name
+    content: 'String'
+    postId: 'Int'
+  }
   Mutation: { // field return type name
     post: 'Post'
   }
   Post: { // field return type name
+    comments: 'Comment'
     content: 'String'
     id: 'Int'
     timestamp: 'Int'
