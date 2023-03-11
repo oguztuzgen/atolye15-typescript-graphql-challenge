@@ -1,5 +1,5 @@
 import { arg, extendType, list, nonNull, objectType, stringArg } from 'nexus';
-import { posts, comments } from '../data/data';
+import { posts } from '../data/data';
 
 export const Post = objectType({
   name: 'Post',
@@ -7,12 +7,13 @@ export const Post = objectType({
     t.nonNull.int('id');
     t.nonNull.string('content');
     t.nonNull.int('timestamp');
+    t.int('parentId');
     t.nonNull.list.nonNull.field('comments', {
-      type: 'Comment',
+      type: 'Post',
       resolve(parent, args, context, info) {
-        return comments.filter((comment) => comment.postId === parent.id);
+        return posts.filter((post) => post.parentId === parent.id);
       }
-    })
+    });
   },
 });
 
@@ -24,7 +25,7 @@ export const PostQuery = extendType({
       resolve(parent, args, context, info) {
         // todo db connection
         // return db.fetchAllPosts();
-        return posts;
+        return posts.filter((post) => !post.parentId);
       },
     });
   },

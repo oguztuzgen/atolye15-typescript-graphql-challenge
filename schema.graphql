@@ -2,22 +2,22 @@
 ### Do not make changes to this file directly
 
 
-type Comment {
-  content: String!
-  postId: Int!
-}
-
 type Mutation {
   post(content: String!): Post!
 }
 
 type Post {
-  comments: [Comment!]!
+  comments: [Post!]!
   content: String!
   id: Int!
+  parentId: Int
   timestamp: Int!
 }
 
 type Query {
   feed: [Post!]!
+}
+
+type Reaction {
+  reactionType: String!
 }

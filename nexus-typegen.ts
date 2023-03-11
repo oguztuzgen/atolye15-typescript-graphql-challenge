@@ -28,17 +28,17 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
-  Comment: { // root type
-    content: string; // String!
-    postId: number; // Int!
-  }
   Mutation: {};
   Post: { // root type
     content: string; // String!
     id: number; // Int!
+    parentId?: number | null; // Int
     timestamp: number; // Int!
   }
   Query: {};
+  Reaction: { // root type
+    reactionType: string; // String!
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -52,40 +52,40 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
-  Comment: { // field return type
-    content: string; // String!
-    postId: number; // Int!
-  }
   Mutation: { // field return type
     post: NexusGenRootTypes['Post']; // Post!
   }
   Post: { // field return type
-    comments: NexusGenRootTypes['Comment'][]; // [Comment!]!
+    comments: NexusGenRootTypes['Post'][]; // [Post!]!
     content: string; // String!
     id: number; // Int!
+    parentId: number | null; // Int
     timestamp: number; // Int!
   }
   Query: { // field return type
     feed: NexusGenRootTypes['Post'][]; // [Post!]!
   }
+  Reaction: { // field return type
+    reactionType: string; // String!
+  }
 }
 
 export interface NexusGenFieldTypeNames {
-  Comment: { // field return type name
-    content: 'String'
-    postId: 'Int'
-  }
   Mutation: { // field return type name
     post: 'Post'
   }
   Post: { // field return type name
-    comments: 'Comment'
+    comments: 'Post'
     content: 'String'
     id: 'Int'
+    parentId: 'Int'
     timestamp: 'Int'
   }
   Query: { // field return type name
     feed: 'Post'
+  }
+  Reaction: { // field return type name
+    reactionType: 'String'
   }
 }
 
