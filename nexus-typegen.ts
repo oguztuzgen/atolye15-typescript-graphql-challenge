@@ -31,7 +31,7 @@ export interface NexusGenObjects {
   Mutation: {};
   Post: { // root type
     content: string; // String!
-    createdAt: number; // Int!
+    createdAt: string; // String!
     id: number; // Int!
     parentId?: number | null; // Int
   }
@@ -55,11 +55,12 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 export interface NexusGenFieldTypes {
   Mutation: { // field return type
     sendPost: NexusGenRootTypes['Post']; // Post!
+    sendReaction: NexusGenRootTypes['Reaction']; // Reaction!
   }
   Post: { // field return type
     comments: NexusGenRootTypes['Post'][]; // [Post!]!
     content: string; // String!
-    createdAt: number; // Int!
+    createdAt: string; // String!
     id: number; // Int!
     parentId: number | null; // Int
     reactions: NexusGenRootTypes['Reaction'][]; // [Reaction!]!
@@ -76,11 +77,12 @@ export interface NexusGenFieldTypes {
 export interface NexusGenFieldTypeNames {
   Mutation: { // field return type name
     sendPost: 'Post'
+    sendReaction: 'Reaction'
   }
   Post: { // field return type name
     comments: 'Post'
     content: 'String'
-    createdAt: 'Int'
+    createdAt: 'String'
     id: 'Int'
     parentId: 'Int'
     reactions: 'Reaction'
@@ -99,6 +101,10 @@ export interface NexusGenArgTypes {
     sendPost: { // args
       content: string; // String!
       parentId?: number | null; // Int
+    }
+    sendReaction: { // args
+      postId: number; // Int!
+      reactionType: string; // String!
     }
   }
 }

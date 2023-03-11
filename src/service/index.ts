@@ -1,1 +1,2 @@
-export * from './inMemory/';
+export * from './postgres/';
+// export * from './inMemory';

@@ -4,12 +4,13 @@
 
 type Mutation {
   sendPost(content: String!, parentId: Int): Post!
+  sendReaction(postId: Int!, reactionType: String!): Reaction!
 }
 
 type Post {
   comments: [Post!]!
   content: String!
-  createdAt: Int!
+  createdAt: String!
   id: Int!
   parentId: Int
   reactions: [Reaction!]!

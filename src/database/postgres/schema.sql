@@ -2,7 +2,7 @@ create table posts (
   id serial primary key,
   content varchar(280) not null,
   parentId int,
-  createdAt timestamp not null,
+  createdAt varchar not null,
   foreign key (parentId) references posts(id)
 );
 
