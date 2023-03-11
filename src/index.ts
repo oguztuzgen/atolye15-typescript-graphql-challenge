@@ -9,6 +9,4 @@ export const server = new ApolloServer({
   schema,
 });
 
-server.listen({ port }).then(({ url }) => {
-  console.log(`Server ready at ${url}`);
-});
+server.listen({ port });

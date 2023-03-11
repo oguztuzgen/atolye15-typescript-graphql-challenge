@@ -11,6 +11,7 @@ type Post {
   content: String!
   id: Int!
   parentId: Int
+  reactions: [Reaction!]!
   timestamp: Int!
 }
 
@@ -19,5 +20,6 @@ type Query {
 }
 
 type Reaction {
+  postId: Int!
   reactionType: String!
 }

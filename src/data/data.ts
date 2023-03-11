@@ -14,3 +14,10 @@ export const posts: NexusGenObjects['Post'][] = [
     parentId: 1,
   },
 ];
+
+export const reactions: NexusGenObjects['Reaction'][] = [
+  {
+    postId: 2,
+    reactionType: 'THUMBS_UP',
+  },
+];

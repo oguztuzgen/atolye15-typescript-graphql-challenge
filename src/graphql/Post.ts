@@ -1,5 +1,5 @@
 import { arg, extendType, list, nonNull, objectType, stringArg } from 'nexus';
-import { posts } from '../data/data';
+import { posts, reactions } from '../data/data';
 
 export const Post = objectType({
   name: 'Post',
@@ -14,6 +14,12 @@ export const Post = objectType({
         return posts.filter((post) => post.parentId === parent.id);
       }
     });
+    t.nonNull.list.nonNull.field('reactions', {
+      type: 'Reaction',
+      resolve(parent, args, context) {
+        return reactions.filter((reaction) => reaction.postId === parent.id);
+      }
+    })
   },
 });
 

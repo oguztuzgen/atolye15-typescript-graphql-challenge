@@ -37,6 +37,7 @@ export interface NexusGenObjects {
   }
   Query: {};
   Reaction: { // root type
+    postId: number; // Int!
     reactionType: string; // String!
   }
 }
@@ -60,12 +61,14 @@ export interface NexusGenFieldTypes {
     content: string; // String!
     id: number; // Int!
     parentId: number | null; // Int
+    reactions: NexusGenRootTypes['Reaction'][]; // [Reaction!]!
     timestamp: number; // Int!
   }
   Query: { // field return type
     feed: NexusGenRootTypes['Post'][]; // [Post!]!
   }
   Reaction: { // field return type
+    postId: number; // Int!
     reactionType: string; // String!
   }
 }
@@ -79,12 +82,14 @@ export interface NexusGenFieldTypeNames {
     content: 'String'
     id: 'Int'
     parentId: 'Int'
+    reactions: 'Reaction'
     timestamp: 'Int'
   }
   Query: { // field return type name
     feed: 'Post'
   }
   Reaction: { // field return type name
+    postId: 'Int'
     reactionType: 'String'
   }
 }
