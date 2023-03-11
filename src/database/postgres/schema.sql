@@ -1,3 +1,5 @@
+create database kiwitter;
+
 create table posts (
   id serial primary key,
   content varchar(280) not null,
