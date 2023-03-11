@@ -1,5 +1,4 @@
 import { arg, extendType, list, nonNull, objectType, stringArg } from 'nexus';
-import { NexusGenObjects } from '../../nexus-typegen';
 import { posts } from '../data/data';
 
 export const Post = objectType({
