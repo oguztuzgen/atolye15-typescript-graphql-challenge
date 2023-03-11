@@ -9,10 +9,10 @@ type Mutation {
 type Post {
   comments: [Post!]!
   content: String!
+  createdAt: Int!
   id: Int!
   parentId: Int
   reactions: [Reaction!]!
-  timestamp: Int!
 }
 
 type Query {

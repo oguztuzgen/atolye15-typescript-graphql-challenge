@@ -10,7 +10,7 @@ export const postService: PostService = {
       content: content,
       parentId: parentId,
       id: newId,
-      timestamp: Date.now(),
+      createdAt: Date.now(),
     };
     posts.push(newPost);
     return newPost;

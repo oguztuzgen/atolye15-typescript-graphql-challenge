@@ -6,7 +6,7 @@ export const Post = objectType({
   definition(t) {
     t.nonNull.int('id');
     t.nonNull.string('content');
-    t.nonNull.int('timestamp');
+    t.nonNull.int('createdAt');
     t.int('parentId');
     t.nonNull.list.nonNull.field('comments', {
       type: 'Post',

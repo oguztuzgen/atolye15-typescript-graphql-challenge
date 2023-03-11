@@ -31,9 +31,9 @@ export interface NexusGenObjects {
   Mutation: {};
   Post: { // root type
     content: string; // String!
+    createdAt: number; // Int!
     id: number; // Int!
     parentId?: number | null; // Int
-    timestamp: number; // Int!
   }
   Query: {};
   Reaction: { // root type
@@ -59,10 +59,10 @@ export interface NexusGenFieldTypes {
   Post: { // field return type
     comments: NexusGenRootTypes['Post'][]; // [Post!]!
     content: string; // String!
+    createdAt: number; // Int!
     id: number; // Int!
     parentId: number | null; // Int
     reactions: NexusGenRootTypes['Reaction'][]; // [Reaction!]!
-    timestamp: number; // Int!
   }
   Query: { // field return type
     feed: NexusGenRootTypes['Post'][]; // [Post!]!
@@ -80,10 +80,10 @@ export interface NexusGenFieldTypeNames {
   Post: { // field return type name
     comments: 'Post'
     content: 'String'
+    createdAt: 'Int'
     id: 'Int'
     parentId: 'Int'
     reactions: 'Reaction'
-    timestamp: 'Int'
   }
   Query: { // field return type name
     feed: 'Post'
