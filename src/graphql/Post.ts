@@ -1,5 +1,5 @@
-import { arg, extendType, list, nonNull, objectType, stringArg } from 'nexus';
-import { posts, reactions } from '../data/data';
+import { extendType, intArg, nonNull, objectType, stringArg } from 'nexus';
+import { postService, reactionService } from '../service';
 
 export const Post = objectType({
   name: 'Post',
@@ -11,13 +11,13 @@ export const Post = objectType({
     t.nonNull.list.nonNull.field('comments', {
       type: 'Post',
       resolve(parent, args, context, info) {
-        return posts.filter((post) => post.parentId === parent.id);
+        return postService.readPost(parent.id);
       }
     });
     t.nonNull.list.nonNull.field('reactions', {
       type: 'Reaction',
       resolve(parent, args, context) {
-        return reactions.filter((reaction) => reaction.postId === parent.id);
+        return reactionService.readReaction(parent.id);
       }
     })
   },
@@ -29,9 +29,7 @@ export const PostQuery = extendType({
     t.nonNull.list.nonNull.field('feed', {
       type: 'Post',
       resolve(parent, args, context, info) {
-        // todo db connection
-        // return db.fetchAllPosts();
-        return posts.filter((post) => !post.parentId);
+        return postService.readAllRootPosts();
       },
     });
   },
@@ -40,24 +38,15 @@ export const PostQuery = extendType({
 export const PostMutation = extendType({
   type: 'Mutation',
   definition(t) {
-    t.nonNull.field('post', {
+    t.nonNull.field('sendPost', {
       type: 'Post',
       args: {
         content: nonNull(stringArg()),
+        parentId: intArg(),
       },
       resolve(parent, args, context) {
-        const { content } = args;
-        
-        let newId = posts.length + 1;
-        const post = {
-          id: newId,
-          content: content,
-          timestamp: Date.now(),
-          comments: [],
-        };
-        // todo db insert
-        posts.push(post);
-        return post;
+        const { content, parentId } = args;
+        return postService.createPost(content, parentId);
       },
     });
   },

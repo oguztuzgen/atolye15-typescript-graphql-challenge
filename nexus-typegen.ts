@@ -54,7 +54,7 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
   Mutation: { // field return type
-    post: NexusGenRootTypes['Post']; // Post!
+    sendPost: NexusGenRootTypes['Post']; // Post!
   }
   Post: { // field return type
     comments: NexusGenRootTypes['Post'][]; // [Post!]!
@@ -75,7 +75,7 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenFieldTypeNames {
   Mutation: { // field return type name
-    post: 'Post'
+    sendPost: 'Post'
   }
   Post: { // field return type name
     comments: 'Post'
@@ -96,8 +96,9 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
-    post: { // args
+    sendPost: { // args
       content: string; // String!
+      parentId?: number | null; // Int
     }
   }
 }

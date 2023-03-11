@@ -3,7 +3,7 @@
 
 
 type Mutation {
-  post(content: String!): Post!
+  sendPost(content: String!, parentId: Int): Post!
 }
 
 type Post {
