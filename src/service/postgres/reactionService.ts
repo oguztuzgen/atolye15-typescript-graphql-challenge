@@ -20,7 +20,6 @@ export const reactionService: ReactionService = {
       ]);
       return reaction;
     } catch (e) {
-      console.log(e);
       throw new UserInputError('createReaction');
     }
   },
@@ -32,7 +31,6 @@ export const reactionService: ReactionService = {
       );
       return rows;
     } catch (e) {
-      console.log(e);
       throw new UserInputError('readReaction');
     }
   },
