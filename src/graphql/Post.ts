@@ -1,5 +1,6 @@
-import { extendType, nonNull, objectType, stringArg } from 'nexus';
+import { arg, extendType, list, nonNull, objectType, stringArg } from 'nexus';
 import { NexusGenObjects } from '../../nexus-typegen';
+import { posts } from '../data/data';
 
 export const Post = objectType({
   name: 'Post',
@@ -10,25 +11,14 @@ export const Post = objectType({
   },
 });
 
-let posts: NexusGenObjects['Post'][] = [
-  {
-    id: 1,
-    content: 'Fullstack tutorial for GraphQL',
-    timestamp: 1678522645,
-  },
-  {
-    id: 2,
-    content: 'GraphQL official website',
-    timestamp: 1678522645,
-  },
-];
-
 export const PostQuery = extendType({
   type: 'Query',
   definition(t) {
     t.nonNull.list.nonNull.field('feed', {
       type: 'Post',
       resolve(parent, args, context, info) {
+        // todo db connection
+        // return db.fetchAllPosts();
         return posts;
       },
     });
@@ -45,7 +35,17 @@ export const PostMutation = extendType({
       },
       resolve(parent, args, context) {
         const { content } = args;
-      }
+        let newId = posts.length + 1;
+        const post = {
+          id: newId,
+          content: content,
+          timestamp: Date.now(),
+          comments: [],
+        };
+        // todo db insert
+        posts.push(post);
+        return post;
+      },
     });
   },
 });
