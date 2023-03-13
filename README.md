@@ -1,5 +1,6 @@
 # Atolye15 Coding Challenge
 
+## How to run
 .env file contents
 ```
 PGHOST=localhost
